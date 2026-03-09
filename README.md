@@ -23,6 +23,28 @@ TinyLLM/
 └── training/       # Training loop, loss computation, and checkpointing
 ```
 
+---
+
+## Architecture
+
+TinyLLM implements a decoder-only autoregressive transformer. The reference configuration targets approximately 200M parameters.
+
+| Component | Choice |
+|---|---|
+| Architecture | Decoder-only Transformer (Pre-Norm) |
+| Normalization | RMSNorm |
+| Positional Encoding | RoPE |
+| Attention | Multi-head with Grouped Query Attention (GQA) |
+| Feedforward | SwiGLU |
+| KV Caching | Supported |
+| Mixture of Experts | Optional (8 experts, top-2 routing) |
+| Linear Attention | Optional (DeltaNet, alternating layers) |
+| Training Objective | Next-token prediction (cross-entropy) |
+| Inference Sampling | Temperature, top-k, top-p |
+
+
+---
+
 ### Component Overview
 
 **`configs/`**
@@ -114,3 +136,7 @@ Contributions are welcome. To propose a change, open an issue first to discuss t
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+
+
